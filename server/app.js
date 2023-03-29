@@ -30,6 +30,11 @@ app.use((req,res,next)=>
 })
 
 
+const Admin = require('./model/Admin');
+
+// admin router 
+const adminRoutes = require('./routes/admin');
+app.use('/api/admin' , adminRoutes);
 
 
 app.use((error,req,res,next)=>
