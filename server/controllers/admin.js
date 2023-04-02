@@ -46,7 +46,7 @@ exports.login = async(req,res,next)=>{
         },
         "token"
         );
-        res.status(200).json({admin:other, token:token});
+        res.status(200).json({admin:other, token:token ,message_en:"Success login", message_ar:"نجح تسجيل الدخول"});
     }
     catch(err){
         if(! err.statusCode){

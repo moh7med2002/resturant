@@ -1,10 +1,10 @@
 import './App.css';
-import {createTheme,ThemeProvider,Button, Typography,Box, CssBaseline} from '@mui/material'
+import {createTheme,ThemeProvider, CssBaseline} from '@mui/material'
 import { useEffect } from 'react';
 import Cookies from 'js-cookie';
-import i18next from 'i18next';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Route , Routes } from 'react-router-dom';
+import AdminLogin from './pages/auth/AdminLogin';
 
 
 
@@ -33,6 +33,10 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline/>
+        <Routes>
+          {/* admin pages */}
+          <Route path='/admin/login' element={<AdminLogin/>}/>
+        </Routes>
       </ThemeProvider>
     </div>
   );

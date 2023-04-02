@@ -1,3 +1,7 @@
 {
-    "hello":"Hello"
+    "email":"Email",
+    "passowrd":"Password",
+    "login_btn":"Login",
+    "required":"This field is required",
+    "welcome":"Welcome back!"
 }

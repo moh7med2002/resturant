@@ -14,6 +14,8 @@ import {BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store , persistor} from './redux/store';
+import { SnackbarProvider } from 'notistack';
+
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -47,7 +49,9 @@ root.render(
       <Provider Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Suspense fallback={<h1></h1>}>
-            <App />
+            <SnackbarProvider>
+              <App />
+            </SnackbarProvider>
           </Suspense>
         </PersistGate>
       </Provider>
