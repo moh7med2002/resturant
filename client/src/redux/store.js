@@ -1,7 +1,5 @@
 import { configureStore , combineReducers} from '@reduxjs/toolkit'
-import themeSlice from './themeSlice';
 import adminSlice from './adminSlice'
-
 
 import {
     persistStore,
@@ -15,12 +13,6 @@ import {
   } from 'redux-persist'
   import storage from 'redux-persist/lib/storage';
 
-  const persistConfig = {
-    key: 'root1',
-    version: 1,
-    storage,
-  }
-
   const persistConfig2 = {
     key: 'root2',
     version: 1,
@@ -28,7 +20,6 @@ import {
   }
 
   const rootReducer=combineReducers({
-    theme : persistReducer(persistConfig, themeSlice),
     admin : persistReducer(persistConfig2 , adminSlice)
   })
 

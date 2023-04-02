@@ -1,41 +1,36 @@
 import './App.css';
-import {createTheme,ThemeProvider, CssBaseline} from '@mui/material'
-import { useEffect } from 'react';
-import Cookies from 'js-cookie';
-import { useSelector } from 'react-redux';
+import {createTheme,ThemeProvider} from '@mui/material'
 import { Route , Routes } from 'react-router-dom';
 import AdminLogin from './pages/auth/AdminLogin';
-
-
+import AdminHome from './pages/admin/AdminHome';
+import AddMarket from './pages/admin/AddMarket';
+import AllMarkets from './pages/admin/AllMarkets';
 
 function App() {
 
-  const {mode} = useSelector(s => s.theme);
   const theme = createTheme({
-    direction:"rtl",
     palette:{
-      mode:mode
+      primary:{
+        contrastText:"#fff",
+        main:"#283045"
+      },
+      secondary:{
+        contrastText:"#fff",
+        main:"#fc5a5a"
+      }
     }
   })
-
-  useEffect(()=>{
-    const lang = Cookies.get("i18next") || "en";
-    if(lang==="ar"){
-      document.body.dir="rtl"
-    }
-    else{
-      document.body.dir="ltr"
-    }
-  },[])
-
 
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <CssBaseline/>
         <Routes>
-          {/* admin pages */}
+          {/* auth pages */}
           <Route path='/admin/login' element={<AdminLogin/>}/>
+          {/** admin pages*/}
+          <Route path='/admin' element={<AdminHome/>}/>
+          <Route path='/admin/add-market' element={<AddMarket/>}/>
+          <Route path='/admin/all-markets' element={<AllMarkets/>}/>
         </Routes>
       </ThemeProvider>
     </div>

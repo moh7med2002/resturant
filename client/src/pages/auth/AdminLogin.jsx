@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import loginImage from '../../images/login.jpeg'
 
-
 const Image = styled('img')({
     maxWidth:"100%",
     height:"100vh"
