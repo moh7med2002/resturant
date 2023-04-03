@@ -30,7 +30,7 @@ app.use((req,res,next)=>
 })
 
 
-const Admin = require('./model/Admin');
+const models = require('./model');
 
 // admin router 
 const adminRoutes = require('./routes/admin');
@@ -46,7 +46,7 @@ app.use((error,req,res,next)=>
 })
 
 const sequlize = require('./utils/database') 
-sequlize.sync({alter:false})
+sequlize.sync({force:true})
 .then(result=>
     {
         console.log('connection')
