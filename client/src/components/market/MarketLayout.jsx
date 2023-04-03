@@ -14,20 +14,28 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
+import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import {Link} from 'react-router-dom'
+import DiscountOutlinedIcon from '@mui/icons-material/DiscountOutlined';
 const drawerWidth = 240;
 
 const topics = [
     {title:"Home",icon:<HomeOutlinedIcon/>,link:""},
-    {title:"Add Market",icon:<AddOutlinedIcon/>,link:"add-market"},
-    {title:"All Markets",icon:<RestaurantMenuOutlinedIcon/>,link:"all-markets"},
-    {title:"All Users",icon:<PersonOutlineOutlinedIcon/>,link:""},
+    {title:"Add Department",icon:<AddOutlinedIcon/>,link:"add-department"},
+    {title:"Departments",icon:<Inventory2OutlinedIcon/>,link:"departments"},
+    {title:"Add Product",icon:<AddCircleOutlineOutlinedIcon/>,link:"add-product"},
+    {title:"All Products",icon:<ShoppingBasketOutlinedIcon/>,link:"products"},
+    {title:"Chat Customer",icon:<ChatBubbleOutlineOutlinedIcon/>,link:"chat-coustomer"},
+    {title:"Orders",icon:<ShoppingCartCheckoutOutlinedIcon/>,link:"orders"},
+    {title:"Discount Product",icon:<DiscountOutlinedIcon/>,link:"discount"},
+    {title:"Profile",icon:<AccountCircleOutlinedIcon/>,link:"profile"},
     {title:"Logut",icon:<LogoutOutlinedIcon/>,link:""}
 ]
 
@@ -44,7 +52,7 @@ function ResponsiveDrawer(props) {
         <Toolbar />
         <List sx={{color:"#fff"}}>
             {topics.map((item, index) => (
-            <Link to={`/admin/${item.link}`}>
+            <Link to={`/market/${item.link}`}>
                 <ListItem key={index+'a1'} disablePadding>
                     <ListItemButton>
                     <ListItemIcon sx={{color:"#fff"}}>
@@ -83,7 +91,7 @@ function ResponsiveDrawer(props) {
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div" sx={{color:"black"}}>
-                Dashboard
+                Market
             </Typography>
             </Toolbar>
         </AppBar>
@@ -98,7 +106,7 @@ function ResponsiveDrawer(props) {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
+                keepMounted: true
             }}
             sx={{
                 display: { xs: 'block', sm: 'none'},
