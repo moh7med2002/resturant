@@ -7,6 +7,7 @@ import AddMarket from './pages/admin/AddMarket';
 import AllMarkets from './pages/admin/AllMarkets';
 import MarketHome from './pages/market/MarketHome';
 import AddProduct from './pages/market/AddProduct';
+import AddDepartment from './pages/market/AddDepartment';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           {/** market pages */}
           <Route path='/market' element={<MarketHome/>}/>
           <Route path='/market/add-product' element={<AddProduct/>}/>
+          <Route path='/market/add-department' element={<AddDepartment/>}/>
         </Routes>
       </ThemeProvider>
     </div>
