@@ -27,7 +27,7 @@ const topics = [
     {title:"Home",icon:<HomeOutlinedIcon/>,link:""},
     {title:"Add Market",icon:<AddOutlinedIcon/>,link:"add-market"},
     {title:"All Markets",icon:<RestaurantMenuOutlinedIcon/>,link:"all-markets"},
-    {title:"All Users",icon:<PersonOutlineOutlinedIcon/>,link:""},
+    {title:"All Users",icon:<PersonOutlineOutlinedIcon/>,link:"all-users"},
     {title:"Logut",icon:<LogoutOutlinedIcon/>,link:""}
 ]
 
@@ -67,8 +67,8 @@ function ResponsiveDrawer(props) {
         <AppBar
             position="fixed"
             sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)`},
-            ml: { sm: `${drawerWidth}px` },
+            width: { md: `calc(100% - ${drawerWidth}px)`},
+            ml: { md: `${drawerWidth}px` },
             bgcolor:"#fff"
             }}
         >
@@ -78,7 +78,7 @@ function ResponsiveDrawer(props) {
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { sm: 'none' } }}
+                sx={{ mr: 2, display: { md: 'none' } }}
             >
                 <MenuIcon />
             </IconButton>
@@ -89,7 +89,7 @@ function ResponsiveDrawer(props) {
         </AppBar>
         <Box
             component="nav"
-            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+            sx={{ width: { md: drawerWidth }, flexShrink: { sm: 0 } }}
             aria-label="mailbox folders"
         >
             <Drawer
@@ -101,7 +101,7 @@ function ResponsiveDrawer(props) {
                 keepMounted: true, // Better open performance on mobile.
             }}
             sx={{
-                display: { xs: 'block', sm: 'none'},
+                display: { xs: 'block', md: 'none'},
                 '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
             }}
             >
@@ -110,7 +110,7 @@ function ResponsiveDrawer(props) {
             <Drawer
             variant="permanent"
             sx={{
-                display: { xs: 'none', sm: 'block' },
+                display: { xs: 'none', md: 'block' },
                 '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
             }}
             open
@@ -120,7 +120,7 @@ function ResponsiveDrawer(props) {
         </Box>
         <Box
             component="main"
-            sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+            sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } , overflowX:"auto"}}
         >
             <Toolbar />
             {props.children}

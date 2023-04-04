@@ -8,6 +8,8 @@ import AllMarkets from './pages/admin/AllMarkets';
 import MarketHome from './pages/market/MarketHome';
 import AddProduct from './pages/market/AddProduct';
 import AddDepartment from './pages/market/AddDepartment';
+import AllUsers from './pages/admin/AllUsers';
+import MarketDepartments from './pages/market/MarketDepartments';
 
 function App() {
 
@@ -22,7 +24,8 @@ function App() {
         main:"#fc5a5a"
       }
     }
-  })
+  });
+
 
   return (
     <div className="App">
@@ -35,10 +38,12 @@ function App() {
           <Route path='/admin' element={<AdminHome/>}/>
           <Route path='/admin/add-market' element={<AddMarket/>}/>
           <Route path='/admin/all-markets' element={<AllMarkets/>}/>
+          <Route path='/admin/all-users' element={<AllUsers/>}/>
           {/** market pages */}
           <Route path='/market' element={<MarketHome/>}/>
           <Route path='/market/add-product' element={<AddProduct/>}/>
           <Route path='/market/add-department' element={<AddDepartment/>}/>
+          <Route path='/market/departments' element={<MarketDepartments/>}/>
         </Routes>
       </ThemeProvider>
     </div>

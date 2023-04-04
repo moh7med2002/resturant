@@ -9,16 +9,16 @@ export default function AllResturant() {
     return (
         <AdminLayout>
             <Grid container spacing={2} justifyContent={"center"}>
-                <Grid item xs={12} sm={9} md={5} lg={3}>
+                <Grid item xs={10} sm={6} md={6} lg={4} xl={3}>
                     <AdminMarketBox/>
                 </Grid>
-                <Grid item xs={12} sm={9} md={5} lg={3}>
+                <Grid item xs={10} sm={6} md={6} lg={4} xl={3}>
                     <AdminMarketBox/>
                 </Grid>
-                <Grid item xs={12} sm={9} md={5} lg={3}>
+                <Grid item xs={10} sm={6} md={6} lg={4} xl={3}>
                     <AdminMarketBox/>
                 </Grid>
-                <Grid item xs={12} sm={9} md={5} lg={3}>
+                <Grid item xs={10} sm={6} md={6} lg={4} xl={3}>
                     <AdminMarketBox/>
                 </Grid>
             </Grid>
