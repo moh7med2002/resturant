@@ -50,9 +50,9 @@ app.use((error,req,res,next)=>
 })
 
 const sequlize = require('./utils/database') 
-sequlize.sync({alter:false})
+sequlize.sync()
 .then(result=>
     {
         console.log('connection')
-        app.listen(5000)
+        app.listen(6400)
     })

@@ -3,8 +3,6 @@ const Market = require('../model/Market')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-
-
 module.exports.register = async(req,res,next)=>
 {
     try{
@@ -56,7 +54,6 @@ exports.login = async(req,res,next)=>{
         next(err);
     }
 }
-
 
 module.exports.addMarket = async(req,res,next) => {
     const {name , email , password} = req.body;

@@ -8,7 +8,7 @@ const Department = sequelize.define('department',{
         allowNull:false,
         primaryKey:true
     },
-    tite:{
+    title:{
         type:DataTypes.STRING,
         required:true
     },
