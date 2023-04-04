@@ -60,7 +60,7 @@ exports.getAllDepartments = async(req,res,next)=>
             throw error ;
         }
         const departments = await Department.findAll({where:{marketId:marketId}})
-        res.status({departments})
+        res.status(200).json({{departments}})
     }
     catch(err){
         if(! err.statusCode){
