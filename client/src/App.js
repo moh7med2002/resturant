@@ -10,6 +10,7 @@ import AddProduct from './pages/market/AddProduct';
 import AddDepartment from './pages/market/AddDepartment';
 import AllUsers from './pages/admin/AllUsers';
 import MarketDepartments from './pages/market/MarketDepartments';
+import MarketAllProducts from './pages/market/MarketAllProducts';
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
           <Route path='/market/add-product' element={<AddProduct/>}/>
           <Route path='/market/add-department' element={<AddDepartment/>}/>
           <Route path='/market/departments' element={<MarketDepartments/>}/>
+          <Route path='/market/products' element={<MarketAllProducts/>}/>
         </Routes>
       </ThemeProvider>
     </div>

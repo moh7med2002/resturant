@@ -114,7 +114,7 @@ export default function AddProduct() {
                             <Image src={URL.createObjectURL(image)}/>
                         </Box>
                     }
-                    <Button variant='contained' color="secondary" sx={{textTransform:"capitalize",width:"120px"}}>Add Product</Button>
+                    <Button type="submit" variant='contained' color="secondary" sx={{textTransform:"capitalize",width:"120px"}}>Add Product</Button>
                 </form>
             </Box>
         </MarketLayout>

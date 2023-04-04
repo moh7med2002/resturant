@@ -29,7 +29,7 @@ export default function AddDepartment() {
                             />
                             {errors.title?.type === 'required' && <Typography color="error" role="alert" sx={{fontSize:"13px",marginTop:"6px"}}>this field is required</Typography>}
                         </Box>
-                        <Button variant='contained' color="secondary" sx={{textTransform:"capitalize",width:"140px"}}>Add Department</Button>
+                        <Button variant='contained' type="submit" color="secondary" sx={{textTransform:"capitalize",width:"140px"}}>Add Department</Button>
                     </form>
                 </Box>
             </MarketLayout>
