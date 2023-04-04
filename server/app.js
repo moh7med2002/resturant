@@ -36,6 +36,10 @@ const models = require('./model');
 const adminRoutes = require('./routes/admin');
 app.use('/api/admin' , adminRoutes);
 
+// market router 
+const marketRoutes = require('./routes/market');
+app.use('/api/market' , marketRoutes);
+
 
 app.use((error,req,res,next)=>
 {
@@ -46,7 +50,7 @@ app.use((error,req,res,next)=>
 })
 
 const sequlize = require('./utils/database') 
-sequlize.sync({force:true})
+sequlize.sync({alter:false})
 .then(result=>
     {
         console.log('connection')

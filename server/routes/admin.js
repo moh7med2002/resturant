@@ -8,4 +8,10 @@ const adminAuth = require('../middleware/adminAuth');
 router.post('/register' , adminControllers.register);
 router.post('/login' , adminControllers.login)
 
+
+// admin market function
+router.post('/market/create' , adminAuth , adminControllers.addMarket);
+router.get('/market/all' , adminAuth , adminControllers.getAllMarket);
+
+
 module.exports = router;

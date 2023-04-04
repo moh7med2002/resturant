@@ -1,4 +1,5 @@
 const Admin = require('../model/Admin');
+const Market = require('../model/Market')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -10,7 +11,7 @@ module.exports.register = async(req,res,next)=>
         const {email , password} = req.body;
         const admin = await Admin.findOne({where:{email:email}});
         if (admin){
-            return res.status(403).json({message_en:'E-mail already used' , message_ar:"الايميل مستخدم"});
+            return res.status(403).json({message:'E-mail already used'});
         }
         const hashPass = await bcrypt.hash(password,12);
         const newAdmin = await Admin.create({
@@ -18,7 +19,7 @@ module.exports.register = async(req,res,next)=>
             password:hashPass,
         });
         await newAdmin.save()
-        res.status(200).json({message_en:'admin has been created' , message_ar:"تم انشاء حساب الادمن"});
+        res.status(200).json({message:'admin has been created' });
     }
     catch(err){
         if(! err.statusCode){
@@ -34,11 +35,11 @@ exports.login = async(req,res,next)=>{
     try{
         const currentAdmin = await Admin.findOne({where:{email:email}});
         if(!currentAdmin){
-            return res.status(403).json({message_en:'E-mail not found' , message_ar:"الايميل غير موجود"});
+            return res.status(403).json({message:'E-mail not found'});
         }
         const isPasswordMatch = await bcrypt.compare(pass,currentAdmin.password);
         if(!isPasswordMatch){
-            return res.status(403).json({message_en:'Invalid password' , message_ar:"كلمة المرور خاطئة"});
+            return res.status(403).json({message:'Invalid password'});
         };
         const {password,...other} = {...currentAdmin.toJSON()}
         const token = jwt.sign({
@@ -46,7 +47,45 @@ exports.login = async(req,res,next)=>{
         },
         "token"
         );
-        res.status(200).json({admin:other, token:token ,message_en:"Success login", message_ar:"نجح تسجيل الدخول"});
+        res.status(200).json({admin:other, token:token ,message:"Success login"});
+    }
+    catch(err){
+        if(! err.statusCode){
+            err.statusCode=500;
+        }
+        next(err);
+    }
+}
+
+
+module.exports.addMarket = async(req,res,next) => {
+    const {name , email , password} = req.body;
+    try{
+        const market = await Market.findOne({where:{email:email}});
+        if (market){
+            return res.status(403).json({message:'E-mail already used'});
+        }
+        const hashPass = await bcrypt.hash(password,12);
+        const newMarket = await Market.create({
+            name,email,password:hashPass
+        });
+        await newMarket.save();
+        res.status(201).json({message:'market has been created' });
+    }
+    catch(err){
+        if(! err.statusCode){
+            err.statusCode=500;
+        }
+        next(err);
+    }
+} 
+
+module.exports.getAllMarket = async (req,res,next) => {
+    try{
+        const markets = await Market.findAll({
+            attributes: { exclude: ['password'] }
+        });
+        res.status(200).json({markets});
     }
     catch(err){
         if(! err.statusCode){
