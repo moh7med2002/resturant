@@ -24,6 +24,8 @@ import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCh
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import {Link} from 'react-router-dom'
 import DiscountOutlinedIcon from '@mui/icons-material/DiscountOutlined';
+import { useDispatch } from 'react-redux';
+import { marketLogout } from '../../redux/marketSlice';
 const drawerWidth = 240;
 
 const topics = [
@@ -36,7 +38,6 @@ const topics = [
     {title:"Orders",icon:<ShoppingCartCheckoutOutlinedIcon/>,link:"orders"},
     {title:"Discount Product",icon:<DiscountOutlinedIcon/>,link:"discount"},
     {title:"Profile",icon:<AccountCircleOutlinedIcon/>,link:"profile"},
-    {title:"Logut",icon:<LogoutOutlinedIcon/>,link:""}
 ]
 
 function ResponsiveDrawer(props) {
@@ -46,6 +47,7 @@ function ResponsiveDrawer(props) {
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
+    const dispacth = useDispatch();
 
     const drawer = (
         <div>
@@ -63,6 +65,14 @@ function ResponsiveDrawer(props) {
                 </ListItem>
             </Link>
             ))}
+            <ListItem key={'a1w'} disablePadding onClick={()=>dispacth(marketLogout())}>
+                <ListItemButton>
+                    <ListItemIcon sx={{color:"#fff"}}>
+                        <LogoutOutlinedIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Logout"} />
+                </ListItemButton>
+            </ListItem>
         </List>
         </div>
     );

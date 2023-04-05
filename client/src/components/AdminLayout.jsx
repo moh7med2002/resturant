@@ -21,6 +21,8 @@ import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlin
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import {Link} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import { adminLogout } from '../redux/adminSlice';
 const drawerWidth = 240;
 
 const topics = [
@@ -28,8 +30,7 @@ const topics = [
     {title:"Add Market",icon:<AddOutlinedIcon/>,link:"add-market"},
     {title:"All Markets",icon:<RestaurantMenuOutlinedIcon/>,link:"all-markets"},
     {title:"All Users",icon:<PersonOutlineOutlinedIcon/>,link:"all-users"},
-    {title:"Logut",icon:<LogoutOutlinedIcon/>,link:""}
-]
+];
 
 function ResponsiveDrawer(props) {
     const { window } = props;
@@ -39,6 +40,8 @@ function ResponsiveDrawer(props) {
         setMobileOpen(!mobileOpen);
     };
 
+
+    const dispacth = useDispatch();
     const drawer = (
         <div>
         <Toolbar />
@@ -55,6 +58,14 @@ function ResponsiveDrawer(props) {
                 </ListItem>
             </Link>
             ))}
+            <ListItem key={'a1'} disablePadding onClick={()=>dispacth(adminLogout())}>
+                <ListItemButton>
+                    <ListItemIcon sx={{color:"#fff"}}>
+                        <LogoutOutlinedIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Logout"} />
+                </ListItemButton>
+            </ListItem>
         </List>
         </div>
     );

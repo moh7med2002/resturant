@@ -9,5 +9,6 @@ router.post('/login' , marketControllers.login)
 router.post('/department/create',marketAuth, marketControllers.addDepartment)
 router.get('/department/all',marketAuth,marketControllers.getAllDepartments)
 router.post('/product/create',marketAuth,marketControllers.addProduct)
+router.get('/product/all' , marketAuth , marketControllers.getAllProducts);
 
 module.exports = router;

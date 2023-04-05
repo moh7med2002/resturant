@@ -80,7 +80,10 @@ module.exports.addMarket = async(req,res,next) => {
 module.exports.getAllMarket = async (req,res,next) => {
     try{
         const markets = await Market.findAll({
-            attributes: { exclude: ['password'] }
+            attributes: { exclude: ['password'] },
+            order: [
+                ['createdAt', 'DESC']
+            ]
         });
         res.status(200).json({markets});
     }

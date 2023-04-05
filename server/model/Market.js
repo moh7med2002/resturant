@@ -19,24 +19,24 @@ const Market = sequelize.define('market',{
     name:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:""
     },
     image:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:"sdefault.jpg"
     },
     description:{
         type:DataTypes.TEXT,
-        default:""
+        defaultValue:""
     },
     views:{
         type:DataTypes.INTEGER,
-        default:0
+        defaultValue:0
     },
     rate:{
         type:DataTypes.DOUBLE,
-        default:0
+        defaultValue:0
     }
 })
 

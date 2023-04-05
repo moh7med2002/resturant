@@ -3,16 +3,16 @@ import React , {useState} from 'react'
 import { useForm, Controller } from "react-hook-form";
 import { useSnackbar } from 'notistack';
 import {useDispatch} from 'react-redux'
-import { adminLogin } from '../../redux/adminSlice';
-import loginImage from '../../images/social.jpg'
+import loginImage from '../../images/marketLogin.jpeg'
 import { useNavigate } from 'react-router-dom';
+import { marketLogin } from '../../redux/marketSlice';
 
 const Image = styled('img')({
     width:"100%",
     height:"100vh"
 })
 
-export default function AdminLogin() {
+export default function MarketLogin() {
 
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export default function AdminLogin() {
             const formData = new FormData();
             formData.append('email', data.email);
             formData.append('password' , data.password);
-            const res = await fetch(`${process.env.REACT_APP_API}api/admin/login`,{
+            const res = await fetch(`${process.env.REACT_APP_API}api/market/login`,{
                 method : "POST",
                 body : formData
             });
@@ -43,8 +43,8 @@ export default function AdminLogin() {
                 throw new Error('login falied')
             }
             enqueueSnackbar(resData.message,{variant:"success" , autoHideDuration:2000});
-            dispatch(adminLogin({admin:resData.admin , token:resData.token}));
-            navigate('/admin');
+            dispatch(marketLogin({market:resData.market , token:resData.token}));
+            navigate('/market');
         }
         catch(err){
             setIsLoad(false);
@@ -58,7 +58,7 @@ export default function AdminLogin() {
                 <Grid item xs={12} md={6}>
                     <Container sx={{display:"flex",flexDirection:"column",justifyContent:"center",height:"100%"}}>
                         <Typography sx={{textTransform:"uppercase",color:"#fc5a5a",
-                        fontSize:"34px",marginBottom:"20px",fontWeight:"600",textAlign:"center"}}>Login</Typography>
+                        fontSize:"34px",marginBottom:"20px",fontWeight:"600",textAlign:"center"}}>Login as Market</Typography>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <Box sx={{marginBottom:"30px"}}>
                                 <InputLabel sx={{marginBottom:"6px",fontSize:"13px"}}>Email</InputLabel>

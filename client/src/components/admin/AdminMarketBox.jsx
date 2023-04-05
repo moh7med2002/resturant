@@ -19,15 +19,15 @@ const InfoWrapper = styled(Box)({
     margin:"10px auto"
 })
 
-export default function AdminMarketBox() {
+export default function AdminMarketBox({market}) {
   return (
     <Paper sx={{padding:"20px 10px" , textAlign:"center"}} elevation={1}>
-        <Image src={"https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}
+        <Image src={`${process.env.REACT_APP_API}images/${market?.image}`}
         alt=""
         />
         <InfoWrapper>
-            <Typography>Name : market name</Typography>
-            <Typography>Email : market email</Typography>
+            <Typography>Name : {market?.name}</Typography>
+            <Typography>Email : {market?.email}</Typography>
         </InfoWrapper>
     </Paper>
   )

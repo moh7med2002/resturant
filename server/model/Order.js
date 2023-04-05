@@ -15,7 +15,7 @@ const Order = sequelize.define('order',{
     isPaid:{
         type:DataTypes.BOOLEAN,
         required:true,
-        default:false
+        defaultValue:false
     },
     status:{
         type:DataTypes.STRING,

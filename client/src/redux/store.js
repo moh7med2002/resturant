@@ -1,5 +1,6 @@
 import { configureStore , combineReducers} from '@reduxjs/toolkit'
 import adminSlice from './adminSlice'
+import marketSlice from './marketSlice'
 
 import {
     persistStore,
@@ -19,8 +20,15 @@ import {
     storage,
   }
 
+  const persistConfig = {
+    key: 'root1',
+    version: 1,
+    storage,
+  }
+
   const rootReducer=combineReducers({
-    admin : persistReducer(persistConfig2 , adminSlice)
+    admin : persistReducer(persistConfig2 , adminSlice),
+    market : persistReducer(persistConfig , marketSlice)
   })
 
 export const store = configureStore({

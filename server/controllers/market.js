@@ -51,7 +51,7 @@ exports.addDepartment = async(req,res,next)=>
 exports.getAllDepartments = async(req,res,next)=>
 {
     try{
-        const {marketId} = req.marketId
+        const marketId = req.marketId
         const market = await Market.findOne({where:{id:marketId}})
         if(!market)
         {
@@ -59,8 +59,16 @@ exports.getAllDepartments = async(req,res,next)=>
             error.statusCode = 404 ;
             throw error ;
         }
-        const departments = await Department.findAll({where:{marketId:marketId}})
-        res.status(200).json({{departments}})
+        const departments = await Department.findAll({
+            where:{marketId:marketId},
+            include:[
+                {model:Product}
+            ],
+            order: [
+                ['createdAt', 'DESC']
+            ]
+        })
+        res.status(200).json({departments})
     }
     catch(err){
         if(! err.statusCode){
@@ -80,9 +88,41 @@ exports.addProduct = async(req,res,next)=>
             error.statusCode = 422
             throw error
         }
-        const product = await Product.create({title,description,departmentId,price,image:req.file.filename})
+        const product = await Product.create({title,description,departmentId,price:+price,image:req.file.filename})
         await product.save()
         res.status(201).json({message:"product has been created"})
+    }
+    catch(err){
+        if(!err.statusCode){
+            err.statusCode=500;
+        }
+        next(err);
+    }
+}
+
+module.exports.getAllProducts = async (req,res,next) => {
+    const marketId = req.marketId;
+    try{
+        const market = await Market.findOne({where:{id:marketId}})
+        if(!market)
+        {
+            const error = new Error('failed occured')
+            error.statusCode = 404 ;
+            throw error ;
+        }
+        const products = await Product.findAll({
+            include:[
+                {
+                    model:Department,
+                    where:{marketId:marketId},
+                    attributes: ['title']
+                }
+            ],
+            order: [
+                ['createdAt', 'DESC']
+            ]
+        })
+        res.status(200).json({products})
     }
     catch(err){
         if(!err.statusCode){

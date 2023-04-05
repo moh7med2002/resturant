@@ -20,15 +20,16 @@ const InfoWrapper = styled(Box)({
     margin:"10px auto"
 })
 
-export default function MarketProductBox() {
+export default function MarketProductBox({product}) {
   return (
     <Paper sx={{padding:"20px 10px" , textAlign:"center"}} elevation={1}>
-        <Image src={"https://images.pexels.com/photos/236010/pexels-photo-236010.jpeg?auto=compress&cs=tinysrgb&w=600"}
+        <Image src={`${process.env.REACT_APP_API}images/${product?.image}`}
         alt=""
         />
         <InfoWrapper>
-            <Typography>Name : milk</Typography>
-            <Typography>Price : $ 22</Typography>
+            <Typography>Name : {product?.title}</Typography>
+            <Typography>Price : $ {product?.price}</Typography>
+            <Typography>Department : {product?.department?.title}</Typography>
         </InfoWrapper>
     </Paper>
   )

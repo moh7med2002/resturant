@@ -1,6 +1,6 @@
 import './App.css';
 import {createTheme,ThemeProvider} from '@mui/material'
-import { Route , Routes } from 'react-router-dom';
+import { Route , Routes , Navigate} from 'react-router-dom';
 import AdminLogin from './pages/auth/AdminLogin';
 import AdminHome from './pages/admin/AdminHome';
 import AddMarket from './pages/admin/AddMarket';
@@ -12,6 +12,15 @@ import AllUsers from './pages/admin/AllUsers';
 import MarketDepartments from './pages/market/MarketDepartments';
 import MarketAllProducts from './pages/market/MarketAllProducts';
 import ChatCustomers from './pages/market/ChatCustomers';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
+import { useSelector } from 'react-redux';
+import MarketLogin from './pages/auth/MarketLogin';
+
+const queryClient = new QueryClient()
+
 
 function App() {
 
@@ -28,29 +37,35 @@ function App() {
     }
   });
 
+  const {admin} = useSelector(s => s.admin);
+  const {market} = useSelector(s => s.market);
+
 
   return (
-    <div className="App">
+    <QueryClientProvider client={queryClient}>
+      <div className="App">
       <ThemeProvider theme={theme}>
         <Routes>
           {/* auth pages */}
-          <Route path='/admin/login' element={<AdminLogin/>}/>
+          <Route path='/admin/login' element={admin ?<Navigate to={'/admin'}/> :<AdminLogin/>}/>
+          <Route path='/market/login' element={market ?<Navigate to={'/market'}/> :<MarketLogin/>}/>
 
           {/** admin pages*/}
-          <Route path='/admin' element={<AdminHome/>}/>
-          <Route path='/admin/add-market' element={<AddMarket/>}/>
-          <Route path='/admin/all-markets' element={<AllMarkets/>}/>
-          <Route path='/admin/all-users' element={<AllUsers/>}/>
+          <Route path='/admin' element={admin ? <AdminHome/> : <Navigate to={'/admin/login'}/>}/>
+          <Route path='/admin/add-market' element={admin ? <AddMarket/> : <Navigate to={'/admin/login'}/>}/>
+          <Route path='/admin/all-markets' element={admin ? <AllMarkets/> : <Navigate to={'/admin/login'}/>}/>
+          <Route path='/admin/all-users' element={admin ? <AllUsers/> : <Navigate to={'/admin/login'}/>}/>
           {/** market pages */}
-          <Route path='/market' element={<MarketHome/>}/>
-          <Route path='/market/add-product' element={<AddProduct/>}/>
-          <Route path='/market/add-department' element={<AddDepartment/>}/>
-          <Route path='/market/departments' element={<MarketDepartments/>}/>
-          <Route path='/market/products' element={<MarketAllProducts/>}/>
-          <Route path='/market/chat-coustomer' element={<ChatCustomers/>}/>
+          <Route path='/market' element={market?<MarketHome/> : <Navigate to={'/market/login'}/>}/>
+          <Route path='/market/add-product' element={market?<AddProduct/> : <Navigate to={'/market/login'}/>}/>
+          <Route path='/market/add-department' element={market?<AddDepartment/> : <Navigate to={'/market/login'}/>}/>
+          <Route path='/market/departments' element={market?<MarketDepartments/> : <Navigate to={'/market/login'}/>}/>
+          <Route path='/market/products' element={market?<MarketAllProducts/> : <Navigate to={'/market/login'}/>}/>
+          <Route path='/market/chat-coustomer' element={market?<ChatCustomers/> : <Navigate to={'/market/login'}/>}/>
         </Routes>
       </ThemeProvider>
     </div>
+    </QueryClientProvider>
   );
 }
 

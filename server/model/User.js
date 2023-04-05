@@ -19,22 +19,22 @@ const User = sequelize.define('user',{
     name:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:""
     },
     image:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:"user.png"
     },
     phone:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:""
     },
     country:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:""
     }
 })
 

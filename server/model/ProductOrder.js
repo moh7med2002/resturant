@@ -11,12 +11,12 @@ const Order = sequelize.define('product_order',{
     title:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:""
     },
     image:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:""
     },
     price:{
         type:DataTypes.INTEGER,

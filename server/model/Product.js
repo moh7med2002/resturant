@@ -11,30 +11,30 @@ const Product = sequelize.define('product',{
     title:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:""
     },
     image:{
         type:DataTypes.STRING,
         required:true,
-        default:""
+        defaultValue:""
     },
     description:{
         type:DataTypes.STRING,
-        default:""
+        defaultValue:""
     },
     price:{
         type:DataTypes.DOUBLE,
         required:true,
-        default:0
+        defaultValue:0
     },
     hasDiscount:{
         type:DataTypes.BOOLEAN,
         required:true,
-        default:false
+        defaultValue:false
     },
     discount:{
         type:DataTypes.INTEGER,
-        default:0
+        defaultValue:0
     }
 })
 
