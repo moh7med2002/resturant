@@ -18,6 +18,9 @@ import {
 } from 'react-query'
 import { useSelector } from 'react-redux';
 import MarketLogin from './pages/auth/MarketLogin';
+import Home from './pages/client/Home';
+import Market from './pages/client/Market';
+import Markets from './pages/client/Markets';
 
 const queryClient = new QueryClient()
 
@@ -62,6 +65,10 @@ function App() {
           <Route path='/market/departments' element={market?<MarketDepartments/> : <Navigate to={'/market/login'}/>}/>
           <Route path='/market/products' element={market?<MarketAllProducts/> : <Navigate to={'/market/login'}/>}/>
           <Route path='/market/chat-coustomer' element={market?<ChatCustomers/> : <Navigate to={'/market/login'}/>}/>
+        {/** home pages */}
+        <Route path='' element={<Home/>}/>
+        <Route path='markets' element={<Markets/>}/>
+        <Route path='/market/:id' element={<Market/>}/>
         </Routes>
       </ThemeProvider>
     </div>
